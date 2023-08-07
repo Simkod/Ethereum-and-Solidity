@@ -1,0 +1,12 @@
+Readme for the lottery contract and test
+
+In gitbash: 
+npm init -y
+npm install solc@0.8.9 web3 mocha ganache @truffle/hdwallet-provider
+Update your test script in the package.json file to be "test": "mocha"
+Run node deploy.js to deploy a new contract and print the new contract address and abi to the terminal.
+Update lottery.js in the lottery-react frontend with the new contract address and abi.
+
+
+test: 
+npm run test
