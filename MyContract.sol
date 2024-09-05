@@ -4,6 +4,42 @@ pragma solidity 0.8.15;
 
 contract MyContract {
 
+    //STRUCTS
+    //save gas costs and complexity with structs
+    struct PaymentReceivedStruct {
+        address from;
+        uint amount;
+    }
+
+    PaymentReceivedStruct public payment;
+
+    function payContract() public payable {
+        //payment = PaymentReceivedStruct(msg.sender, msg.value);
+        payment.from = msg.sender;
+        payment.amount = msg.value;
+    }
+    
+    //SUBCONTRACTS
+    /*
+    PaymentReceived public payment;
+
+    function payContract() public payable {
+        payment = new PaymentReceived(msg.sender, msg.value);
+        }
+    }
+
+contract PaymentReceived {
+    address public from;
+    uint public amount;
+
+    constructor(address _from, uint _amount) {
+        from = _from;
+        amount = _amount;
+    }
+    */
+
+    // MAPPING
+    /*
     mapping(address => uint) public balanceReceived;
 
     function sendMoney() public payable {
@@ -20,7 +56,7 @@ contract MyContract {
         _to.transfer(balanceToSendOut);
         
     }
-
+    */
 
     // SMART MONEY IMPLEMENTATION
     /*
