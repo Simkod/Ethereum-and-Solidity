@@ -1,11 +1,11 @@
 //SPDX-License-Identifier: MIT
 
 // Smart Contract Wallet Requirements:
-// - Wallet has 1 Owner - OK
-// - Receive Funds with a callback function - OK
-// - owner Spend Money on EOA and also Contract addresses - OK
-// - Give allowance to other addresses (limited to a certain amount) - OK
-// - Change owner to a different address, recovery functionality, 3out of 5 guardians - OK
+// - Wallet has 1 Owner
+// - Receive Funds with a callback function
+// - Allowed users can spend money on EOA and also Contract addresses
+// - Owner can give allowance to addresses
+// - Changeing of owner as recovery functionality for Guardians, 3out of 5 guardians
 
 pragma solidity 0.8.15;
 
@@ -81,9 +81,11 @@ contract SmartContractWallet {
         }
     }
 
-    function voteNewOwner(address newOwnerCandidate) public{
+    function proposeNewOwner(address newOwnerCandidate) public{
         require(members[msg.sender].guardian == true, "Sender is not a Guardian!");
+        //Enhancement idea: Only one proposed new owner per Guardian.
         newOwnerVotes[newOwnerCandidate]++;
+        //Enhancement idea: execute only after a deadline, so everyone can propose and vote their new owner
         if(newOwnerVotes[newOwnerCandidate] >= numOwnerChangeNecessaryVote){
             owner = payable(newOwnerCandidate);
         }
@@ -91,5 +93,6 @@ contract SmartContractWallet {
 }
 
 contract ReceiverContract {
-    receive() external payable{}
+    //receive() external payable{}
+    function deposit() public payable{} //for testing spendmoney() function. Use input field after call
 }
