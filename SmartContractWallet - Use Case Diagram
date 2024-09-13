@@ -1,0 +1,24 @@
+@startuml
+
+Title SmartContractWallet - Use Case Diagram
+
+left to right direction
+actor Owner
+
+actor "Allowee\nand/or\nGuardian" as Member
+
+package SmartContractWallet {
+usecase SpendMoney
+usecase setAllowance
+usecase alloweeSpendMoney
+usecase setGuardian
+usecase voteNewOwner
+}
+
+Owner --> SpendMoney
+Owner --> setAllowance
+Owner --> setGuardian
+Member--> alloweeSpendMoney
+Member--> voteNewOwner : If Guardian
+
+@enduml
