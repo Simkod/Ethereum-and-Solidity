@@ -15,6 +15,8 @@ contract Owned {
     }
 }
 
+//To split the 2 contracts in 2 different files, just add: import "./Ownable.sol" before InheritanceModifierExample
+
 contract InheritanceModifierExample is Owned {
 
     mapping(address => uint) public tokenBalance;
